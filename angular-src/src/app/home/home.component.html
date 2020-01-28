@@ -1,0 +1,12 @@
+<div class="center-box">
+    <div class="instructions-div"><dekline-instructions></dekline-instructions></div>
+</div>
+<div class="center-box shaded" *ngIf="sentenceType">
+  <div class="title-bar">
+    <h3 class="margin-0 text-center" [ngSwitch]="sentenceType">
+      <ng-container *ngSwitchCase="_SentenceType.Pronouns">Personal & Possessive Pronouns</ng-container>
+      <ng-container *ngSwitchCase="_SentenceType.VerbsOfMotion">Verbs of Motion</ng-container>
+    </h3>
+  </div>
+  <div class="sentence-div"><dekline-sentence [sentenceType]="sentenceType"></dekline-sentence></div>
+</div>

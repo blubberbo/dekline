@@ -1,0 +1,77 @@
+@import '~styles.scss';
+
+div.instructions-container {
+    display: none;
+    overflow: hidden;
+    margin-bottom: 35px;
+    border-radius: 30px;
+    -webkit-box-shadow: 0px 0px 82px -19px rgba(66,66,66,1);
+    -moz-box-shadow: 0px 0px 82px -19px rgba(66,66,66,1);
+    box-shadow: 0px 0px 82px -19px rgba(66,66,66,1);
+
+    @media screen and (max-device-width: $iPad-height) {
+        -webkit-box-shadow: 0px 0px 52px -19px rgba(66,66,66,1);
+        -moz-box-shadow: 0px 0px 52px -19px rgba(66,66,66,1);
+        box-shadow: 0px 0px 52px -19px rgba(66,66,66,1);
+    }
+
+    &.show {
+        display: block;
+    }
+
+    div.instructions-top-bar {
+        height: 30px;
+        background: $tertiary-color;
+        width: 100%;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        padding: 10px 0;
+
+        > div {
+            margin-left: 25px;
+            color: white;
+
+            > svg {
+                margin-right: 10px;
+                font-size: 2em;
+            }
+
+            > div { 
+                display: inline-block;
+                vertical-align: middle;
+
+                > h4 {
+                    display: inline-block;
+                    margin: 0;
+                    margin-bottom: 17px;
+                    font-weight: normal;
+                    font-size: 1.1em;
+                }
+            }   
+
+            > a.instructions-close-link {
+                float: right;
+                margin-right: 20px;
+                font-size: 1.2em;
+                cursor: pointer;
+            }
+        }
+    }
+
+    div.instructions-body {
+        padding: 15px 30px;
+        background: white;
+        ul {
+            margin: 0;
+            padding-left: 0;
+            list-style: none;
+            margin-bottom: 10px;
+            line-height: 1.5em;
+            
+            > li > svg {
+                color: $tertiary-color;
+            }
+        }
+    }
+
+}

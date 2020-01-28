@@ -1,0 +1,13 @@
+@import '~styles.scss';
+
+div#header-bar{ 
+    text-align: center;
+    > h1 a{
+        color: $primary-color;
+        text-decoration: none;
+    }
+    > h3 {
+        font-style: italic;
+        font-weight: normal;
+    }
+}

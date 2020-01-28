@@ -1,0 +1,6 @@
+<div [ngSwitch]="statusCode" class="text-center">
+    <h2 *ngSwitchCase="null" id="null-text">I am not sure what the error was. Perhaps you came to this page in error. <br />Try clicking on the logo above to go back to the home page.</h2>
+    <h2 *ngSwitchCase="404" id="404-text">{{errorMsg ? errorMsg : 'Error 404: The resource you are looking for cannot be found, sorry.'}}</h2>
+    <h2 *ngSwitchCase="500" id="500-text">{{errorMsg ? errorMsg : 'Error 500: An error occurred on the server, sorry.'}}</h2>
+    <h2 *ngSwitchDefault>{{errorMsg ? errorMsg : 'An error occurred on the server.'}}</h2>
+</div>

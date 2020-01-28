@@ -1,0 +1,38 @@
+<div id="noun-definitions-div" *ngIf="definitions.nouns.length > 0">
+  <ng-container *ngFor="let noun of definitions.nouns">
+      <span class="bold">{{noun.bare}} <span class="part-of-speech">(noun)</span> :</span><br />
+      <span>{{noun.translations_en}}</span><br />
+  </ng-container>
+</div>
+<div id="adjective-definitions-div" *ngIf="definitions.adjectives.length > 0">
+    <ng-container *ngFor="let adjective of definitions.adjectives">
+        <span class="bold">{{adjective.bare}} <span class="part-of-speech">(adjective)</span> :</span><br />
+        <span>{{adjective.translations_en}}</span><br />
+    </ng-container>
+</div>
+<div id="verb-definitions-div" *ngIf="definitions.verbs.length > 0">
+    <ng-container *ngFor="let verb of definitions.verbs">
+        <span class="bold"><span>{{verb.bare}} </span>
+        <span class="part-of-speech">(verb)</span><span *ngIf="verb.casesArray.length > 0"> - </span> 
+        <ng-container *ngFor="let case of verb.casesArray; last as isLast">
+            <span *ngIf="case">{{russianCaseToEnglish(case)}}{{isLast ? '' : ', '}}</span> 
+        </ng-container>:</span><br />
+        <span>{{verb.translations_en}}</span><br />
+    </ng-container>
+</div>
+<div id="adverb-definitions-div" *ngIf="definitions.adverbs.length > 0">
+    <ng-container *ngFor="let adverb of definitions.adverbs">
+        <span class="bold">{{adverb.bare}} <span class="part-of-speech">(adverb)</span> :</span><br />
+        <span>{{adverb.translations_en}}</span><br />
+    </ng-container>
+</div>
+<div id="other-definitions-div" *ngIf="definitions.others.length > 0">
+    <ng-container *ngFor="let other of definitions.others">
+        <span class="bold">{{other.bare}} <span class="part-of-speech">(other)</span> :</span><br />
+        <span>{{other.translations_en}}</span><br />
+    </ng-container>
+</div>
+<div id="no-definitions-div" *ngIf="definitions.nouns.length === 0 && definitions.adjectives.length === 0 && 
+                                        definitions.verbs.length === 0 && definitions.others.length === 0">
+    <span>Cannot find any definitions for this word.</span><br />
+</div>

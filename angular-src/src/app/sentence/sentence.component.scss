@@ -1,0 +1,244 @@
+@import '~styles.scss';
+
+$placeholder-color: #9b9b9b;
+$border-color-active: $tertiary-color;
+
+div#sentence-container {
+
+    > p {
+        &.book-text {
+            margin: 0;
+            margin-bottom: 5px;
+            line-height: 1.7em;
+            > span {
+                display: inline-block;
+            }
+
+            > label.sentence-input {  
+                position: relative;  
+                display: inline-block;
+                margin-right: 3px;
+                margin-left: 3px;
+                &.pronoun-input {
+                    max-width: 55px;
+        
+                    // on iOS (except iPad Pro)
+                    @media screen and (max-device-width: $iPad-height) {
+                        max-width: 75px;
+                    }
+                }
+        
+                > span.input-underline{
+                    pointer-events: none;
+                    height: 100%;
+                    display: block;
+                    &:after{
+                        content: "";
+                        width: 0;
+                        height: 2px;
+                        background-color: $border-color-active;
+                      
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                      
+                        will-change: width;
+                        transition: width .3s ease-out;
+                      }
+                }
+            
+                > input {
+                    width: 100%;
+                    box-sizing: border-box;
+                    background-color: transparent;
+                  
+                    /* for iOS */
+                    border-radius: 5px;
+                    border-style: solid;
+                    border-color: transparent;
+                    -webkit-box-sizing: border-box;
+                        -webkit-appearance: none;
+                  
+                    border-top-width: 0;
+                    border-right-width: 0;
+                    border-bottom-width: 0;
+                    border-left-width: 0;
+                  
+                    font-family: inherit;
+                    font-size: 100%;
+                    color: inherit;
+                    text-align: center;
+                
+                    &.filled-in {
+                        border-color:$incorrect-color;
+                        box-shadow:0 0 5px $incorrect-color;
+                        
+                        &.input-valid {
+                            border-color:$correct-color;
+                            box-shadow:0 0 5px $correct-color;
+                        }
+                    }
+        
+                    &::-webkit-input-placeholder {  
+                        color: $placeholder-color;
+                        text-align: center;
+                     }
+            
+                     &::-moz-placeholder {  
+                        color: $placeholder-color;
+                        text-align: center;
+                     }
+            
+                     &:-ms-input-placeholder {  
+                        color: $placeholder-color;
+                        text-align: center;
+                     }
+                
+                    &:focus{
+                        outline: none;
+                        border-color: transparent!important;
+                        box-shadow: initial!important;
+                    }
+                    &:focus ~ .input-underline:after {
+                        width: 100%;
+                    }
+                  }
+            }
+             
+            > span.non-input-word {
+                > span {
+                    &:hover {
+                        cursor: pointer;
+                    }
+                    &.showing-definitions {
+                        border-bottom: 5px solid #8b8ce8;
+                    }
+                }
+
+                > div.definitions-box {
+                    position: absolute;
+                    border: 3px solid #dedede;
+                    background: white;
+                    padding: 5px 10px;
+                    z-index: 99;
+                    margin-top: 4px;
+
+                    @media screen and (max-width: $iPad-width) {
+                        left: 6%;
+                        top: 40%;
+                        width: 80%;
+                    }
+
+                    a.close-modal-link {
+                        position: absolute;
+                        color: gray;
+                        top: -12px;
+                        right: -14px;
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+
+                        > svg {
+                            background: white;
+                            border-radius: 32px;
+                            font-size: 1.3em;
+                        }
+
+                        @media screen and (max-width: $iPad-width) {
+                            top: -20px;
+                            right: -20px;
+
+                            > svg {
+                                font-size: 2em;
+                            }
+                        }
+                    }
+                }
+
+                > div.modal {
+                    display: none;
+
+                    @media screen and (max-width: $iPad-width) {
+                        display: initial;
+                        position: absolute;
+                        height: 100%;
+                        width: 100%;
+                        background: rgba(77,77,77,.8);
+                        top: 0;
+                        left: 0;
+                        z-index: 9;
+                    }
+                }
+            }
+        }
+        &#book-title {
+            font-size: .7em;
+            color: gray;
+            font-style: italic;
+            text-align: right;
+            margin-bottom:20px
+        }
+    }
+
+      > div#sentence-button-row {
+        text-align: center;
+        white-space: nowrap;
+
+        > div.button-div {
+            text-align: center;
+            display: inline-block;
+            width: 50%;
+
+            // on iOS (except iPad Pro)
+            @media screen and (max-device-width: $iPad-height) {
+                > button {
+                    width: 100%;
+                    height: 55px;
+                    font-size: 1.3em;
+
+                    > svg[data-prefix = "fas"] {
+                        margin-left: 10px;
+                    }
+                }
+            }
+
+            &#sentence-answers-button-div {
+                text-align: left;
+
+                // on not iOS
+                @media screen and (min-device-width: $iPad-height + 1) {
+                    > button:hover > svg[data-prefix = "fas"] {
+                        transform: translateX(5px) scale(1.5);
+                        transition: 1s;
+                    }
+                }
+
+            }
+
+            &#sentence-next-button-div {
+                text-align: right;
+                
+                // on not iOS
+                @media screen and (min-device-width: $iPad-height + 1) {
+                    > button:hover > svg[data-prefix = "fas"] {
+                        transform: translateX(10px);
+                        transition-duration: 1s;
+                    }
+                }
+            }
+
+            @media screen and (max-width: $iPhone5-width) {
+                > button > svg[data-prefix = "fas"] {
+                    display:none;
+                }
+            }
+        }
+    }
+}
+
+img#loading-img {
+    margin: 35px auto;
+    display: block;
+  }
+  

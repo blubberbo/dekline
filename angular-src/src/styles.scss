@@ -1,0 +1,164 @@
+/* You can add global styles to this file, and also import other style files */
+@import "_palette";
+@import "_breakpoints";
+
+/* general styles */
+body {
+  color: #333333;
+}
+
+button {
+  color: white;
+  outline-color: white;
+  font-size: .7em;
+  min-width: 120px;
+  border: 0;
+  height: 25px;
+
+  &.primary-button {
+    background: $primary-color;
+    &:hover {
+      background: $primary-color-hover;
+    }
+  }
+
+  &.secondary-button {
+    background: $secondary-color;
+    &:hover {
+      background: $secondary-color-hover;
+    }
+  }
+
+  &.tertiary-button {
+    background: $tertiary-color;
+    &:hover {
+      background: $tertiary-color-hover;
+    }
+  }
+
+  &:hover {
+      cursor: pointer;
+  }
+
+  &[disabled] {
+    opacity: .6;
+    pointer-events: none;
+  }
+
+  > svg[data-prefix = "fas"] {
+    margin-left: 5px;
+    transition: .5s;
+  }
+}
+
+@media screen and (max-width: $iPhone8Plus-width) {
+  .hide-on-iPhone{
+    display: none;
+  }
+}
+
+li > svg[data-prefix = "fas"] {
+  margin-right: 8px;
+}
+
+/* animations */
+.shake {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+div.checkmark-div {
+    $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
+
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0%;
+    right: 0%;
+    margin: 0 auto;
+    opacity: .7;
+
+    // on iOS (except iPad Pro)
+    @media screen and (max-device-width: $iPad-height) {
+      // right: 22px;
+    }
+    
+    & > svg {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: block;
+        stroke-width: 2;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        margin: 10% auto;
+        margin-top: 0;
+        margin-bottom: 0;
+        box-shadow: inset 0px 0px 0px $correct-color;
+        animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both, 2.5s fadeOut 1s forwards;
+
+        & > circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: $correct-color;
+            fill: none;
+            animation: stroke .6s $curve forwards;
+        }
+        & > path{
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke .3s $curve .8s forwards;
+        }
+        @keyframes stroke {
+            100% {
+              stroke-dashoffset: 0;
+            }
+          }
+          
+          @keyframes scale {
+            0%, 100% {
+              transform: none;
+            }
+            50% {
+              transform: scale3d(1.1, 1.1, 1);
+            }
+          }
+          
+          @keyframes fill {
+            100% {
+              box-shadow: inset 0px 0px 0px 30px $correct-color;
+            }
+          }
+
+          @keyframes fadeOut {
+            100% {
+              opacity: 0;
+            }
+          }
+    }
+}
+
+

@@ -1,0 +1,21 @@
+<div class="instructions-container" [@hideInstructions]="hideInstructions" [class.show]="!overrideShow">
+  <div class="instructions-top-bar">
+    <div>
+      <i class="fas fa-info-circle"></i>
+      <div>
+        <h4>Instructions</h4>
+      </div>
+      <a class="instructions-close-link" (click)="onCloseLink()"><i class="fas fa-times"></i></a>
+    </div>    
+  </div>
+  <div class="instructions-body">
+    <ul>
+      <li><i class="fas fa-chevron-circle-right"></i>Click on the missing word boxes to fill them in</li>
+      <li class="hide-on-iPhone"><i class="fas fa-chevron-circle-right"></i>Each word is provided for you in the nominative case</li>
+      <li><i class="fas fa-chevron-circle-right"></i>Click on a word to see it's definition</li>
+    </ul>
+    <div class="text-right">
+      <button class="secondary-button" (click)="onDontShowAgain()">Don't Show Again</button>
+    </div>
+  </div>
+</div>

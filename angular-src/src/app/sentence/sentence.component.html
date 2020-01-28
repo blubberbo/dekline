@@ -1,0 +1,52 @@
+<div id="sentence-container" *ngIf="!currentSentenceLoading">
+    <p class="book-text">
+        <ng-container *ngFor="let word of currentSentence.wordsArray; let wordIndex = index">
+            <ng-container *ngIf="word.maskedValue; else wordElseBlock">
+                <!-- the word has a masked value - so render the correct input controls -->
+                <label class="sentence-input" [class.pronoun-input]="sentenceType === _SentenceType.Pronouns" 
+                                                                            [ngStyle]="{'max-width.px': word.inputWidth()}">
+                    <input attr.placeholder="{{word.maskedValue}}" [(ngModel)]="currentSentence.wordsArray[wordIndex].inputValue" 
+                        [ngClass]="{'filled-in': word.inputValue.length > 0, 'input-valid': word.isValid()}" 
+                        [class.shake]="word.shake" (blur)="onWordInputBlur(wordIndex)" (keyup)="onWordInputKeyup()"> 
+                    <span class="input-underline">
+                    </span>
+                    <div class="checkmark-div" *ngIf="word.isValid()">
+                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle cx="26" cy="26" r="25" fill="none"/>
+                            <path fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                    </div>
+                </label>
+            </ng-container>
+            <ng-template #wordElseBlock>
+                <!-- the word does not have a masked value - so just render the word -->
+                <span class="non-input-word">
+                    <span (click)="getDefinitions(word.originalValue, wordIndex)" [class.showing-definitions]="word.showDefinitions">
+                        {{word.originalValue}}
+                    </span>
+                    <div class="definitions-box" *ngIf="word.showDefinitions" (clickOutside)="onClickedOutsideDefinitionsBox($event)">
+                        <a class="close-modal-link" (click)="hideAllDefinitions()"><i class="fas fa-times-circle"></i></a>
+                        <dekline-word-definitions [definitions]="word.definitions"></dekline-word-definitions>
+                    </div>
+                    <div class="modal" *ngIf="word.showDefinitions"></div>
+                </span>
+            </ng-template>
+        </ng-container>
+    </p>
+    <p id="book-title" *ngIf="currentSentence.bookTitle.length > 0">
+        {{currentSentence.bookTitle}}
+    </p>
+    <div id="sentence-button-row">
+        <div class="button-div" id="sentence-answers-button-div">
+            <button id="sentence-answers-button" class="secondary-button" (click)="onAnswersClick()">
+                Answers<i class="fas fa-eye"></i>
+            </button>
+        </div>
+        <div class="button-div" id="sentence-next-button-div">
+            <button id="sentence-next-button" class="tertiary-button" (click)="onNextClick()" [disabled]="!allInputsValid">
+                Next<i class="fas fa-chevron-circle-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<img src='../../../../img/loading.gif' *ngIf="currentSentenceLoading" id="loading-img"/>

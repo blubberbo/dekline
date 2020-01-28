@@ -1,0 +1,12 @@
+{
+    "extends": "standard",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "rules": {
+        "semi": ["error", "always"],
+        "brace-style":  ["error", "stroustrup"],
+        "radix": ["error", "as-needed"]
+    }
+}

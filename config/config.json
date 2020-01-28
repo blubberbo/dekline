@@ -1,0 +1,6 @@
+{
+  "offlineDevelopmentMode": false,
+  "database": "mongodb://dekline_admin:8xduK24zJnUTXux@ds041678.mlab.com:41678/deklinedb",
+  "databaseOffline": "mongodb://127.0.0.1:27017/deklinedb",
+  "yandexDictionaryKey": "dict.1.1.20180427T183639Z.85f85ad78e252129.65fd70a7d39bc866f66d7846ffffb958dda874f1"
+}

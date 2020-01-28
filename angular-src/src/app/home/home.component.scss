@@ -1,0 +1,28 @@
+div.center-box {
+    max-width: 500px;
+    margin: auto;
+    transition-property: all;
+	transition-duration: 5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+    &.shaded {
+        background-color: white;
+        box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
+    }
+
+    > div.title-bar {
+        background: rgb(118,176,141);
+        padding: 15px 25px;
+        color: white;
+        > h3 { 
+            font-size:1.4em;
+            font-weight: normal;
+        }
+    }
+}
+
+div.sentence-div {
+    white-space: pre-wrap;
+    padding: 20px;
+    font-size:1.2em;
+}

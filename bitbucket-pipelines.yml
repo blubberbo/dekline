@@ -1,0 +1,15 @@
+image: node:8.9.4
+clone:
+  depth: full
+pipelines:
+   branches:
+    master:
+    - step:
+        script:
+          - npm install
+          #- cd angular-src && npm install @angular-devkit/build-angular
+          #- npm install @angular-devkit/build-optimizer
+          #- npm install -g @angular/cli 
+          #- ng build --prod --output-path=../dist/
+          #- cd ../
+          - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
