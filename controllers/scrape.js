@@ -10,7 +10,7 @@ const toolbox = require('../tools/toolbox');
 const config = require('../config/config.json');
 const sentenceTypeEnum = require('../models/enums/sentence-type.enum');
 
-// GET HTTP method to /wikipedia
+// GET HTTP method to /litmir
 // Returns a single, random sentence from litmir/me
 router.get('/litmir', (req, res) => {
   // get the type of sentence (eg. pronouns) we are returning based on the sentenceType enum. Default to 1 (pronoun)
